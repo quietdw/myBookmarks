@@ -1,0 +1,29 @@
+*{margin: 0;padding: 0;background: #fbfbfb;}
+a{text-decoration: none;}
+body{font-family: sans-serif}
+.wrapper {
+    text-align: center;
+}
+
+#main {
+    display: inline-block;
+}
+
+#main div{
+    border: 1px solid green;
+}
+#main div>kbd{
+    font-family: sans-serif;
+    border: 1px solid red;
+    width: 4em;
+    height: 4em;
+    display: inline-block;
+    text-transform: uppercase;
+    position: relative;
+}
+#main div>kbd>button{
+    font-family: sans-serif;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
