@@ -32,10 +32,10 @@
             var oImg = document.createElement('img');
             oImg.src = '//' + hash[keys[i][j]] + '/favicon.ico';
             if(!hash[keys[i][j]]){
-                oImg.src = 'https://jiangnana.fun/assets/images/favicon.ico';
+                oImg.src = 'https://jiangnana.fun/myBookmarks/dot.ico';
             }
             oImg.onerror = function(e){
-                e.target.src = 'https://jiangnana.fun/assets/images/favicon.ico';
+                e.target.src = 'https://jiangnana.fun/myBookmarks/dot.ico';
             }
             oKbd.appendChild(oImg);
 
@@ -48,12 +48,12 @@
                 newImg = this.previousSibling;
                 newImg.src = '//' + hash[key] + '/favicon.ico';
                 if(!hash[key]){
-                    newImg.src = 'https://jiangnana.fun/assets/images/favicon.ico';
+                    newImg.src = 'https://jiangnana.fun/myBookmarks/dot.ico';
                 }
                 newImg.onerror = function(e){
-                    e.target.src = 'https://jiangnana.fun/assets/images/favicon.ico';
+                    e.target.src = 'https://jiangnana.fun/myBookmarks/dot.ico';
                 }
-                //localStorage.setItem('hash',JSON.stringify(hash));
+                localStorage.setItem('hash',JSON.stringify(hash));
             }
             oKbd.appendChild(oBtn);
             
