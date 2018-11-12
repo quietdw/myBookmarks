@@ -4,31 +4,7 @@ var keys = init['keys'];
 var hash = init['hash'];
 
 //生成键盘
-// function generateKeyboard(){
-    for(var i=0;i < Object.keys(keys).length;i++){
-        var oMain = document.getElementById('main');
-    
-        var oDiv =  generateElement('div',{className:'row'})
-        oMain.appendChild(oDiv);
-        
-        for(var j=0;j < keys[i].length;j++){
-            var oKbd = generateElement('kbd',{textContent:keys[i][j]})
-
-            var oImg = createImg(hash[keys[i][j]],'https://jiangnana.fun/myBookmarks/dot.ico')
-    
-            var oBtn = createBtn()
-    
-            oDiv.appendChild(oKbd);
-            oKbd.appendChild(oImg);
-            oKbd.appendChild(oBtn);
-        };
-    }
-// }
-// generateKeyboard()
-
-
-
-
+generateKeyboard(keys,hash)
 
 //监听事件
 listener(hash)
@@ -47,8 +23,9 @@ function generateElement(ele,attributes){
 }
 
 function createImg(domain,url){
+ 
     var oImg = generateElement('img',{src:'//' + domain + '/favicon.ico'})
-    if(!hash[keys[i][j]]){
+    if(!domain){
         oImg.src = url;
     }
     oImg.onerror = function(e){
@@ -65,9 +42,10 @@ function createBtn(){
         var key = this.parentNode.textContent[0];
         hash[key] = domain;
         var newImg = this.previousSibling;
-        newImg.src = '//' + hash[key] + '/favicon.ico';
         if(!hash[key]){
             newImg.src = 'https://jiangnana.fun/myBookmarks/dot.ico';
+        }else{
+            newImg.src = '//' + hash[key] + '/favicon.ico';
         }
         newImg.onerror = function(e){
             e.target.src = 'https://jiangnana.fun/myBookmarks/dot.ico';
@@ -87,10 +65,9 @@ function init(){
     };
 
     var hash = {
-        'q':'qq.com',
-        'j':'jiangnana.fun',
-        'l':'lol.qq.com'
-    
+        'b':'baidu.com',
+        'l':'lol.qq.com',
+        'q':'qq.com'
     };
     var localStorageHash = getLocalStorageHash('hash')
     if(localStorageHash){
@@ -103,9 +80,26 @@ function init(){
     }
 }
 
+function generateKeyboard(keys,hash){
+    for(var i=0;i < Object.keys(keys).length;i++){
+        var oMain = document.getElementById('main');
+    
+        var oDiv =  generateElement('div',{className:'row'})
+        oMain.appendChild(oDiv);
+        
+        for(var j=0;j < keys[i].length;j++){
+            var oKbd = generateElement('kbd',{textContent:keys[i][j]})
 
-
-//a
+            var oImg = createImg(hash[keys[i][j]],'https://jiangnana.fun/myBookmarks/dot.ico')
+    
+            var oBtn = createBtn()
+    
+            oDiv.appendChild(oKbd);
+            oKbd.appendChild(oImg);
+            oKbd.appendChild(oBtn);
+        };
+    }
+ }
 
 function listener(hash){
     document.onkeypress = function (e) {
