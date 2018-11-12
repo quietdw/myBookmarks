@@ -30,7 +30,8 @@ body{font-family: sans-serif}
     border-radius: 6px;
     margin: 0 5px;
     font-family: sans-serif;
-    /* border: 1px solid red; */
+    text-align: center;
+    line-height: 64px;
     width: 64px;
     height: 64px;
     display: inline-block;

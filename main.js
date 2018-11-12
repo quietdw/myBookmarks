@@ -1,68 +1,113 @@
+//初始化数据
+var init = init();
+var keys = init['keys'];
+var hash = init['hash'];
+
+//生成键盘
+// function generateKeyboard(){
+    for(var i=0;i < Object.keys(keys).length;i++){
+        var oMain = document.getElementById('main');
+    
+        var oDiv =  generateElement('div',{className:'row'})
+        oMain.appendChild(oDiv);
+        
+        for(var j=0;j < keys[i].length;j++){
+            var oKbd = generateElement('kbd',{textContent:keys[i][j]})
+
+            var oImg = createImg(hash[keys[i][j]],'https://jiangnana.fun/myBookmarks/dot.ico')
+    
+            var oBtn = createBtn()
+    
+            oDiv.appendChild(oKbd);
+            oKbd.appendChild(oImg);
+            oKbd.appendChild(oBtn);
+        };
+    }
+// }
+// generateKeyboard()
+
+
+
+
+
+//监听事件
+listener(hash)
+
+//工具函数
+function getLocalStorageHash(name){
+    return JSON.parse(localStorage.getItem(name) || 'null');
+}
+
+function generateElement(ele,attributes){
+    var oEle = document.createElement(ele);
+    for(var attribute in attributes){
+        oEle[attribute] = attributes[attribute];
+    };
+    return oEle;
+}
+
+function createImg(domain,url){
+    var oImg = generateElement('img',{src:'//' + domain + '/favicon.ico'})
+    if(!hash[keys[i][j]]){
+        oImg.src = url;
+    }
+    oImg.onerror = function(e){
+        e.target.src = url;
+    }
+
+    return oImg
+}
+
+function createBtn(){
+    var oBtn = generateElement('button',{textContent:'edit'});
+    oBtn.onclick = function(e){
+        var domain = prompt('请输入网址');
+        var key = this.parentNode.textContent[0];
+        hash[key] = domain;
+        var newImg = this.previousSibling;
+        newImg.src = '//' + hash[key] + '/favicon.ico';
+        if(!hash[key]){
+            newImg.src = 'https://jiangnana.fun/myBookmarks/dot.ico';
+        }
+        newImg.onerror = function(e){
+            e.target.src = 'https://jiangnana.fun/myBookmarks/dot.ico';
+        }
+        localStorage.setItem('hash',JSON.stringify(hash));
+    }
+
+    return oBtn
+}
+
+function init(){
     var keys = {
-        0:['0','1','2','3','4','5','6','7','8','9',],
+        0:['1','2','3','4','5','6','7','8','9','0'],
         1:['q','w','e','r','t','y','u','i','o','p'],
         2:['a','s','d','f','g','h','j','k','l'],
         3:['z','x','c','v','b','n','m']
     };
+
     var hash = {
         'q':'qq.com',
         'j':'jiangnana.fun',
-        'l':'qq.com'
-
+        'l':'lol.qq.com'
+    
     };
-    var i=0;
-    var localStorageHash = JSON.parse(localStorage.getItem('hash') || 'null');
-    //console.log(localStorageHash);
+    var localStorageHash = getLocalStorageHash('hash')
     if(localStorageHash){
         hash = localStorageHash;
     }
-    //console.log(hash);
-    while(i < Object.keys(keys).length){
-        var j=0;
-        var oMain = document.getElementById('main');
-        var oDiv = document.createElement('div');
-        oDiv.className = 'row';
-        main.appendChild(oDiv);
-        
-        while (j < keys[i].length) {
-            var oKbd = document.createElement('kbd');
-            oKbd.textContent = keys[i][j];
-            oDiv.appendChild(oKbd);
+    
+    return {
+        'keys':keys,
+        'hash':hash
+    }
+}
 
-            var oImg = document.createElement('img');
-            oImg.src = '//' + hash[keys[i][j]] + '/favicon.ico';
-            if(!hash[keys[i][j]]){
-                oImg.src = 'https://jiangnana.fun/myBookmarks/dot.ico';
-            }
-            oImg.onerror = function(e){
-                e.target.src = 'https://jiangnana.fun/myBookmarks/dot.ico';
-            }
-            oKbd.appendChild(oImg);
 
-            var oBtn = document.createElement('button');
-            oBtn.textContent = '编辑';
-            oBtn.onclick = function(e){
-                var url = prompt('请输入网址');
-                var key = this.parentNode.textContent[0];
-                hash[key] = url;
-                newImg = this.previousSibling;
-                newImg.src = '//' + hash[key] + '/favicon.ico';
-                if(!hash[key]){
-                    newImg.src = 'https://jiangnana.fun/myBookmarks/dot.ico';
-                }
-                newImg.onerror = function(e){
-                    e.target.src = 'https://jiangnana.fun/myBookmarks/dot.ico';
-                }
-                localStorage.setItem('hash',JSON.stringify(hash));
-            }
-            oKbd.appendChild(oBtn);
-            
-            j++;
-        };
 
-        i++;
-    };
+//a
 
+function listener(hash){
     document.onkeypress = function (e) {
         var key = e['key'];
         url = hash[key]
@@ -71,5 +116,5 @@
         }else{
             alert(key+'键的地址不正确')
         }
-    };
-
+    }
+}
