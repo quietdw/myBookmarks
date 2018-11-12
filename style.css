@@ -2,28 +2,55 @@
 a{text-decoration: none;}
 body{font-family: sans-serif}
 .wrapper {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-#main {
-    display: inline-block;
+#main .row {
+    margin: 5px 0;
+    min-width: 700px;
 }
 
-#main div{
-    border: 1px solid green;
+#main .row:nth-child(2){
+    margin-left: 40px;
+}
+#main .row:nth-child(3){
+    margin-left: 54px;  
+}
+#main .row:nth-child(4){
+    margin-left: 100px;  
 }
 #main div>kbd{
+    background: #000;
+    color: #fff;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+    margin: 0 5px;
     font-family: sans-serif;
-    border: 1px solid red;
-    width: 4em;
-    height: 4em;
+    /* border: 1px solid red; */
+    width: 64px;
+    height: 64px;
     display: inline-block;
     text-transform: uppercase;
     position: relative;
+    cursor: pointer;
+    
+}
+#main div>kbd:hover button{
+    display: inline-block;
 }
 #main div>kbd>button{
     font-family: sans-serif;
     position: absolute;
     bottom: 0;
     right: 0;
+    display: none
+}
+#main div>kbd>img{
+    width: 16px;
+    position: absolute;
+    left: 4px;
+    bottom: 4px;
 }
