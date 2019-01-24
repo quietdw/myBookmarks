@@ -12,7 +12,7 @@ a{text-decoration: none;}
 #main .row0,#main .row1,#main .row2,#main .row3 {margin: 10px 0;min-width: 1092px;}
 #main .row0>kbd span,#main .row1>kbd span{position: absolute}
 #main .row0>kbd::after,#main .row1>kbd::after,#main .row2>kbd::after,#main .row3>kbd::after{position: absolute;width: 12px;height: 12px;;left: calc(50% - 6px);top: 12px;}
-#main .row0>kbd>.keyboardWord,#main .row1>kbd>.keyboardWord,#main .row2>kbd>.keyboardWord,#main .row3>kbd>.keyboardWord{position: absolute;width: 12px;height: 12px;top: -11px;left:calc(50% - 6px);}
+#main .row0>kbd>.keyboardWord,#main .row1>kbd>.keyboardWord,#main .row2>kbd>.keyboardWord,#main .row3>kbd>.keyboardWord{position: absolute;width: 50px;height: 12px;top: -11px;left:calc(50% - 25px);}
 
 #main .row0>kbd:nth-child(1)::after{content: '~';}
 #main .row0>kbd:nth-child(2)::after{content: '!';}

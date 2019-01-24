@@ -74,6 +74,10 @@ function init(){
         'q':'www.qq.com',
         'z':'www.zhihu.com',
         'g':'github.com',
+        'j':'juejin.im',
+        'v':'www.v2ex.com',
+        's':'stackoverflow.com'
+        ,
     };
     var localStorageHash = getLocalStorageHash('hash')
     if(localStorageHash){
