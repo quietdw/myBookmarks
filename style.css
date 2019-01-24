@@ -87,6 +87,7 @@ a{text-decoration: none;}
     cursor: pointer;
 }
 #main div>kbd>.editBtn{
+    font-size: 12px;
     outline: 0;
     border-radius: 2px;
     padding: 1px;
@@ -97,6 +98,7 @@ a{text-decoration: none;}
     background: #fff;
     color: black;
     line-height: 100%;
+    z-index: 1;
 }
 
 #main div>kbd>img{
