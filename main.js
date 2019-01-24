@@ -69,11 +69,11 @@ function init(){
     };
 
     var hash = {
-        'b':'www.baidu.com',
+        'b':'www.bilibili.com',
         'l':'lol.qq.com',
         'q':'www.qq.com',
         'z':'www.zhihu.com',
-        'g':'github.com',
+        'g':'www.google.com',
         'j':'juejin.im',
         'v':'www.v2ex.com',
         's':'stackoverflow.com'
