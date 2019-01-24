@@ -36,10 +36,11 @@ function createImg(domain,url){
 }
 
 function createBtn(){
-    var oBtn = generateElement('button',{textContent:'edit'});
+    var oBtn = generateElement('span',{textContent:'edit',className:'editBtn'});
     oBtn.onclick = function(e){
         var domain = prompt('请输入网址');
-        var key = this.parentNode.textContent[0];
+        if(domain){
+            var key = this.parentNode.textContent[0];
         hash[key] = domain;
         var newImg = this.previousSibling;
         if(!hash[key]){
@@ -51,6 +52,8 @@ function createBtn(){
             e.target.src = 'https://jiangnana.fun/myBookmarks/dot.ico';
         }
         localStorage.setItem('hash',JSON.stringify(hash));
+        }
+        
     }
 
     return oBtn
@@ -58,16 +61,19 @@ function createBtn(){
 
 function init(){
     var keys = {
-        0:['1','2','3','4','5','6','7','8','9','0'],
-        1:['q','w','e','r','t','y','u','i','o','p'],
-        2:['a','s','d','f','g','h','j','k','l'],
-        3:['z','x','c','v','b','n','m']
+        0:['`','1','2','3','4','5','6','7','8','9','0','-','=','←'],
+        1:['tab','q','w','e','r','t','y','u','i','o','p','[',']','\\'],
+        2:['caps','a','s','d','f','g','h','j','k','l',';','\'','enter'],
+        3:['shift','z','x','c','v','b','n','m',',','.','/','shift'],
+        4:['ctrl','win','alt','space','alt','fn','win','ctrl']
     };
 
     var hash = {
-        'b':'baidu.com',
+        'b':'www.baidu.com',
         'l':'lol.qq.com',
-        'q':'qq.com'
+        'q':'www.qq.com',
+        'z':'www.zhihu.com',
+        'g':'github.com',
     };
     var localStorageHash = getLocalStorageHash('hash')
     if(localStorageHash){
@@ -84,31 +90,44 @@ function generateKeyboard(keys,hash){
     for(var i=0;i < Object.keys(keys).length;i++){
         var oMain = document.getElementById('main');
     
-        var oDiv =  generateElement('div',{className:'row'})
+        var oDiv =  generateElement('div',{className:`row${i}`})
         oMain.appendChild(oDiv);
         
         for(var j=0;j < keys[i].length;j++){
-            var oKbd = generateElement('kbd',{textContent:keys[i][j]})
+            var oword = generateElement('span',{textContent:keys[i][j],className:'keyboardWord'})
+            var oKbd = generateElement('kbd',{})
+            oKbd.appendChild(oword)
+            
 
             var oImg = createImg(hash[keys[i][j]],'https://jiangnana.fun/myBookmarks/dot.ico')
     
             var oBtn = createBtn()
     
             oDiv.appendChild(oKbd);
-            oKbd.appendChild(oImg);
-            oKbd.appendChild(oBtn);
+            if(oKbd.textContent.length<=1&&oKbd.textContent!=='←'){
+                oKbd.appendChild(oImg);
+                oKbd.appendChild(oBtn);
+            }
         };
     }
  }
 
 function listener(hash){
     document.onkeypress = function (e) {
-        var key = e['key'];
-        url = hash[key]
-        if(url){
-            window.open('http://'+url, '_blank');
-        }else{
-            alert(key+'键的地址不正确')
+        var keyValue = e['key'];
+        url = hash[keyValue]
+        if(e.code!=='Space'){
+            if(url){
+                window.open('http://'+url, '_blank');
+            }else{
+                alert('\" ' + keyValue+' \"键的地址不正确')
+            }
         }
+        
+            
+                
+        
+        
+        
     }
 }

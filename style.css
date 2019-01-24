@@ -1,6 +1,6 @@
 *{margin: 0;padding: 0;}
+*{box-sizing: border-box;}
 a{text-decoration: none;}
-body{font-family: sans-serif}
 .wrapper {
     display: flex;
     justify-content: center;
@@ -9,27 +9,68 @@ body{font-family: sans-serif}
     background:#fff url(bg.gif) repeat;
 }
 
-#main .row {
-    margin: 5px 0;
-    min-width: 700px;
-}
+#main .row0,#main .row1,#main .row2,#main .row3 {margin: 10px 0;min-width: 1092px;}
+#main .row0>kbd span,#main .row1>kbd span{position: absolute}
+#main .row0>kbd::after,#main .row1>kbd::after,#main .row2>kbd::after,#main .row3>kbd::after{position: absolute;width: 12px;height: 12px;;left: calc(50% - 6px);top: 12px;}
+#main .row0>kbd>.keyboardWord,#main .row1>kbd>.keyboardWord,#main .row2>kbd>.keyboardWord,#main .row3>kbd>.keyboardWord{position: absolute;width: 12px;height: 12px;top: -11px;left:calc(50% - 6px);}
 
-#main .row:nth-child(2){
-    margin-left: 40px;
+#main .row0>kbd:nth-child(1)::after{content: '~';}
+#main .row0>kbd:nth-child(2)::after{content: '!';}
+#main .row0>kbd:nth-child(3)::after{content: '@';}
+#main .row0>kbd:nth-child(4)::after{content: '#';}
+#main .row0>kbd:nth-child(5)::after{content: '$';}
+#main .row0>kbd:nth-child(6)::after{content: '%';}
+#main .row0>kbd:nth-child(7)::after{content: '^';}
+#main .row0>kbd:nth-child(8)::after{content: '&';}
+#main .row0>kbd:nth-child(9)::after{content: '*';}
+#main .row0>kbd:nth-child(10)::after{content: '(';}
+#main .row0>kbd:nth-child(11)::after{content: ')';}
+#main .row0>kbd:nth-child(12)::after{content: '_';}
+#main .row0>kbd:nth-child(13)::after{content: '+';}
+#main .row0>kbd:last-child{width: 120px;}
+
+#main .row1>kbd:first-child{width: 90px;}
+#main .row1>kbd:last-child{width: 92px;}
+#main .row1>kbd:nth-child(12):after{content: '{'}
+#main .row1>kbd:nth-child(13):after{content: '}'}
+#main .row1>kbd:nth-child(14):after{content: '|'}
+
+
+#main .row2>kbd:first-child{width: 115px;}
+#main .row2>kbd:last-child{width: 140px;}
+#main .row2>kbd:nth-child(11):after{content: ':'}
+#main .row2>kbd:nth-child(12):after{content: '“'}
+
+#main .row3>kbd:first-child{width: 150px;}
+#main .row3>kbd:last-child{width: 176px;}
+#main .row3>kbd:nth-child(9):after{content: '<'}
+#main .row3>kbd:nth-child(10):after{content: '>'}
+#main .row3>kbd:nth-child(11):after{content: '?'}
+
+#main .row4>kbd:first-child{width: 90px;}
+#main .row4>kbd:nth-child(3){width: 90px;}
+#main .row4>kbd:nth-child(4){width: 452px;}
+#main .row4>kbd:nth-child(5){width: 90px;}
+#main .row4>kbd:last-child{width: 90px;}
+#main .row0{
+    
 }
-#main .row:nth-child(3){
-    margin-left: 54px;  
+#main .row1{
+      
 }
-#main .row:nth-child(4){
-    margin-left: 100px;  
+#main .row2{
+    
+}
+#main .row3{
+    
 }
 #main div>kbd{
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
     background: rgba(0, 0, 0, 0.9);
     color: #fff;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     border-radius: 6px;
     margin: 0 5px;
-    font-family: sans-serif;
     text-align: center;
     line-height: 64px;
     width: 64px;
@@ -40,22 +81,30 @@ body{font-family: sans-serif}
     cursor: pointer;
     
 }
-#main div>kbd:hover button{
+
+#main div>kbd:hover .editBtn{
     display: inline-block;
     cursor: pointer;
 }
-#main div>kbd>button{
-    font-family: sans-serif;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    display: none
+#main div>kbd>.editBtn{
+    outline: 0;
+    border-radius: 2px;
+    padding: 1px;
+    position:absolute;
+    bottom:1px;
+    right:1px;
+    display:none;
+    background: #fff;
+    color: black;
+    line-height: 100%;
 }
+
 #main div>kbd>img{
     width: 10px;
+    height: 10px;
     position: absolute;
-    left: 4px;
-    bottom: 4px;
+    left: 6px;
+    bottom: 6px;
     border-radius: 50%;
     box-shadow: 0px 0px 3px 1px #fbfbfb;
 }
