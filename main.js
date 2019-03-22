@@ -23,7 +23,7 @@ function generateElement(ele,attributes){
 }
 
 function createImg(domain,url){
- 
+
     var oImg = generateElement('img',{src:'//' + domain + '/favicon.ico'})
     if(!domain){
         oImg.src = url;
@@ -38,7 +38,7 @@ function createImg(domain,url){
 function createBtn(){
     var oBtn = generateElement('span',{textContent:'edit',className:'editBtn'});
     oBtn.onclick = function(e){
-        var domain = prompt('请输入网址');
+        var domain = prompt('请输入网址，形如 baidu.com');
         if(domain){
             var key = this.parentNode.textContent[0];
         hash[key] = domain;
@@ -53,7 +53,7 @@ function createBtn(){
         }
         localStorage.setItem('hash',JSON.stringify(hash));
         }
-        
+
     }
 
     return oBtn
@@ -83,7 +83,7 @@ function init(){
     if(localStorageHash){
         hash = localStorageHash;
     }
-    
+
     return {
         'keys':keys,
         'hash':hash
@@ -93,20 +93,20 @@ function init(){
 function generateKeyboard(keys,hash){
     for(var i=0;i < Object.keys(keys).length;i++){
         var oMain = document.getElementById('main');
-    
+
         var oDiv =  generateElement('div',{className:`row${i}`})
         oMain.appendChild(oDiv);
-        
+
         for(var j=0;j < keys[i].length;j++){
             var oword = generateElement('span',{textContent:keys[i][j],className:'keyboardWord'})
             var oKbd = generateElement('kbd',{})
             oKbd.appendChild(oword)
-            
+
 
             var oImg = createImg(hash[keys[i][j]],'https://jiangnana.fun/myBookmarks/dot.ico')
-    
+
             var oBtn = createBtn()
-    
+
             oDiv.appendChild(oKbd);
             if(oKbd.textContent.length<=1&&oKbd.textContent!=='←'){
                 oKbd.appendChild(oImg);
@@ -127,11 +127,11 @@ function listener(hash){
                 alert('\" ' + keyValue+' \"键的地址不正确')
             }
         }
-        
-            
-                
-        
-        
-        
+
+
+
+
+
+
     }
 }
